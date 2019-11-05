@@ -64,10 +64,6 @@ import (
 	"github.com/antchfx/htmlquery"
 	"golang.org/x/net/html"
 	"github.com/gocolly/twocaptcha"
-	
-	"github.com/chromedp/chromedp"
-	"context"
-
 )
 
 var user_agent string; // contains the user agent
@@ -643,30 +639,12 @@ func main() {
 	
 	//os.Exit(1);
 
-	// create context
-	ctx, cancel := chromedp.NewContext(context.Background())
-	defer cancel()
-
-	// run task list
-	var res string
-		chromedp.Navigate(`https://golang.org/pkg/time/`)
-		node, err := dom.GetDocument().Do(ctx, h)
-		str2, err := dom.GetOuterHTML().WithNodeID(node.NodeID).Do(ctx, h)
-		fmt.Println(str2);
-	
-	if err != nil {
-		fmt.Println(err);
-		os.Exit(1);
-	}
-
-	fmt.Println(res);
 	
 	
 	//resp1 := SendGetReq(client,"https://recaptcha-demo.appspot.com/recaptcha-v3-request-scores.php");
 
 	//fmt.Println(resp1);
 	
-	os.Exit(1);
 	
 	// check if config exists and make a dummy if it does not 
 	
