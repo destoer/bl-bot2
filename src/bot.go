@@ -259,7 +259,7 @@ func GetIValue(doc *html.Node) string {
 
 
 func VisitPageAndDie(client *http.Client) {
-	 forum_link := "https://www.bootleggers.us/forum_new/index.php?flag="
+	forum_link := "https://www.bootleggers.us/forum_new/index.php?flag="
 
 	// 1 - 3 are game, offtopic, and classifields forum pages
 	rand_num := rand.Intn(3) + 1; // random number between 3 and one

@@ -208,10 +208,34 @@ func DoAuto(client *http.Client,config *Config) bool {
 		
 		config.timers[TIMER_AUT] = sec;	
 	
+		bot_sleep(2,1,config);
+		
 	
-		// pull jail page and update timers
-		// subtract timers with the amount of time spent in jail
-		resp := SendGetReq(client,"https://www.bootleggers.us/jail.php");
+		resp := "";
+	
+	
+	
+	
+	
+	
+		if(rand.Intn(2) == 0) {
+	
+			// pull jail page and update timers
+			// subtract timers with the amount of time spent in jail
+			resp = SendGetReq(client,"https://www.bootleggers.us/jail.php");
+		} else { // pull timers from forums	
+			forum_link := "https://www.bootleggers.us/forum_new/index.php?flag="
+			
+			// 1 - 3 are game, offtopic, and classifields forum pages
+			rand_num := rand.Intn(3) + 1; // random number between 3 and one
+					
+			// cat onto end of link
+			forum_link += strconv.Itoa(rand_num);
+								
+			// visit a random forum to make the capacha look less odd (improve this to do something a little more advanced)
+			resp =  SendGetReq(client,forum_link);
+		}
+		
 		doc, err = htmlquery.Parse(strings.NewReader(string(resp)));
 		if(err != nil) {
 			fmt.Println("Failed to parse the html for xpath");
